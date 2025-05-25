@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root";       // default for XAMPP/WAMP
-$password = "";           // default is empty
+$username = "root";       
+$password = "";          
 $dbname = "cybersecurity";
 
 // Create connection
