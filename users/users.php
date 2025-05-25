@@ -106,17 +106,17 @@ include('../connect.php');
                             $result = mysqli_query($conn, $sql);
                             if (mysqli_num_rows($result) > 0){
                                 while ($row = mysqli_fetch_assoc($result)){ ?>
-                            <tr data-incident-id="<?php echo $row['id']; ?>">
-                                <td><?php echo $row['id']; ?></td>
-                                <td><?php echo$row['title']; ?></td>
-                                <td><?php echo $row['description']; ?></td>
-                                <td><?php echo $row['category']; ?></td>
-                                <td><span
+                            <tr data-incident-id="<?php echo $row['id']; ?>" >
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo $row['id']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo$row['title']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo $row['description']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo $row['category']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><span
                                         class="badge bg-<?php echo $row['priority'] === 'High' ? 'danger' : ($row['priority'] === 'Medium' ? 'warning text-dark' : 'success'); ?>">
                                         <?php echo $row['priority']; ?></span>
                                 </td>
-                                <td><?php echo $row['incident_date']; ?></td>
-                                <td class="incident-status"><?php echo $row['status'];?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo $row['incident_date']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'" class="incident-status"><?php echo $row['status'];?></td>
                                 <td>
                                     <?php
                                         $evidence_files = json_decode($row['evidence_files'], true);
@@ -129,7 +129,7 @@ include('../connect.php');
                                         }
                                     ?>
                                 </td>
-                                <td><?php echo date('Y-m-d', strtotime($row['created_at'])); ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo date('Y-m-d', strtotime($row['created_at'])); ?></td>
                             </tr>
                             <?php
                                 }
