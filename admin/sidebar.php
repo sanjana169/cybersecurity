@@ -4,7 +4,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user'])) {
-    // Redirect to login or show guest navbar
     header("Location: ../index.php");
     exit;
 }
@@ -51,6 +50,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 <script>
 document.getElementById('menu-toggle').addEventListener('click', function() {
-    document.body.classList.toggle('sidebar-open'); // add/remove class on body
+    document.body.classList.toggle('sidebar-open'); 
 });
 </script>

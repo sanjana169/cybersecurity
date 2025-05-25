@@ -1,5 +1,5 @@
 <?php
-require '../connect.php'; // Adjust path if needed
+require '../connect.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $incidentId = intval($_POST['incident_id']);

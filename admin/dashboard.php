@@ -2,7 +2,6 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-    // Redirect to login or show guest navbar
     header("Location: ../index.php");
     exit;
 }
@@ -11,8 +10,6 @@ $role = $_SESSION['role'] ?? 'admin';
 $user = $_SESSION['user'];
 include('../connect.php');
 
-
-// Total Incidents
 $totalIncidentsQuery = $conn->query("SELECT COUNT(*) AS total FROM incidents");
 $totalIncidents = $totalIncidentsQuery->fetch_assoc()['total'];
 
@@ -248,8 +245,8 @@ if ($avgSeconds) {
     });
     </script>
     <script>
-    const currentUserRole = "<?php echo $_SESSION['role'] ?? 'admin'; ?>"; 
-    let lastNotifId = 0; 
+    const currentUserRole = "<?php echo $_SESSION['role'] ?? 'admin'; ?>";
+    let lastNotifId = 0;
 
     function toast(msg) {
         Swal.fire({
@@ -268,17 +265,17 @@ if ($avgSeconds) {
             .then(list => {
                 if (list.length) {
                     list.forEach(n => toast(n.message));
-                    lastNotifId = list[list.length - 1].id; 
+                    lastNotifId = list[list.length - 1].id;
                 }
             })
             .catch(console.error);
     }
 
-    
+
     pollNotifications();
     setInterval(pollNotifications, 5000);
     </script>
-    
+
 </body>
 
 </html>

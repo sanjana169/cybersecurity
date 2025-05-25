@@ -1,8 +1,8 @@
 <?php
-// Database connection
+
 include('../connect.php');
 
-// Insert user
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 

@@ -1,8 +1,8 @@
 <?php
-// Turn off output buffering and error display
+
 ob_clean();
 header('Content-Type: application/json');
-include '../connect.php'; // use your actual DB connection file
+include '../connect.php'; 
 
 $response = [];
 

@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $role = $_POST['role'];
 
-    // Determine the table based on the role
     switch ($role) {
         case 'Super Admin':
             $table = 'super_admins';

@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    //header('Location:../index.php');
-    //  exit();
+    header('Location:../index.php');
+      exit();
 }
 $error = '';
 include('../connect.php');
@@ -71,9 +71,7 @@ function getAdminCount() {
                 <h4>Dashboard</h4>
             </div>
             <div class="container-fluid px-4 mt-4">
-                <h2 class="mb-4">Super Admin Dashboard</h2>
 
-                <!-- Stats Overview -->
                 <div class="row g-4 mb-4">
                     <div class="col-md-3">
                         <div class="card text-white bg-primary">
@@ -109,9 +107,6 @@ function getAdminCount() {
                     </div>
                 </div>
 
-                
-
-                <!-- Latest Incidents Table -->
                 <div class="card mb-4">
                     <div class="card-header bg-dark text-white">
                         <h5>Recent Incidents</h5>
@@ -126,51 +121,39 @@ function getAdminCount() {
                                     <th>Date</th>
                                     <th>Status</th>
                                     <th>Assigned To</th>
-                                   
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                               $sql = "SELECT incidents.id,
-               incidents.title,
-               incidents.category,
-               incidents.priority,
-               incidents.incident_date,
-               incidents.status,
-               admin.username AS assigned_to
-        FROM incidents
-        LEFT JOIN `admin` ON incidents.assigned_admin_id = admin.id
-        ORDER BY incidents.incident_date DESC";
-$result = $conn->query($sql);
+                                $sql = "SELECT incidents.id,incidents.title,incidents.category,incidents.priority,incidents.incident_date,incidents.status,admin.username AS assigned_to FROM incidents
+                                        LEFT JOIN `admin` ON incidents.assigned_admin_id = admin.id
+                                        ORDER BY incidents.incident_date DESC";
+                                    $result = $conn->query($sql);
                                 ?>
                                 <?php if ($result->num_rows > 0): ?>
-            <?php while($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['title']) ?></td>
-                    <td><?= htmlspecialchars($row['category']) ?></td>
-                    <td><?= htmlspecialchars($row['priority']) ?></td>
-                    <td><?= htmlspecialchars($row['incident_date']) ?></td>
-                    <td><?= htmlspecialchars($row['status']) ?></td>
-                    <td><?= htmlspecialchars($row['assigned_to']) ?: 'Unassigned' ?></td>
-                   
-                </tr>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <tr><td colspan="7" class="text-center">No incidents found.</td></tr>
-        <?php endif; ?>
-                               
+                                <?php while($row = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?php echo $row['title']; ?></td>
+                                    <td><?php echo $row['category']; ?></td>
+                                    <td><?php echo $row['priority']; ?></td>
+                                    <td><?php echo $row['incident_date']; ?></td>
+                                    <td><?php echo $row['status']; ?></td>
+                                    <td><?php echo $row['assigned_to'] ?: 'Unassigned'; ?></td>
+                                </tr>
+                                <?php endwhile; ?>
+                                <?php else: ?>
+                                <tr>
+                                    <td colspan="7" class="text-center">No incidents found.</td>
+                                </tr>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
     <?php include ('../footer.php'); ?>
-
-
 </body>
 
 </html>

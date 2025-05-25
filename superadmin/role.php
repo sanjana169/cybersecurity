@@ -1,7 +1,6 @@
 <?php
 include('../connect.php');
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_role'])) {
     $role = mysqli_real_escape_string($conn, $_POST['role']);
     $check = mysqli_query($conn, "SELECT * FROM roles WHERE role_name = '$role'");

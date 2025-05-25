@@ -1,7 +1,6 @@
 <?php
-include('../connect.php'); // Make sure this path is correct
+include('../connect.php'); 
 
-// Sanitize and fetch form inputs
 $title = mysqli_real_escape_string($conn, $_POST['title']);
 $description = mysqli_real_escape_string($conn, $_POST['description']);
 $category = mysqli_real_escape_string($conn, $_POST['category']);
@@ -25,7 +24,7 @@ foreach ($_FILES['evidence']['tmp_name'] as $key => $tmp_name) {
     }
 
     $original_name = basename($_FILES['evidence']['name'][$key]);
-    $file_name = preg_replace('/[^a-zA-Z0-9-_\.]/', '_', $original_name); // sanitize
+    $file_name = preg_replace('/[^a-zA-Z0-9-_\.]/', '_', $original_name); 
     $file_type = $_FILES['evidence']['type'][$key];
     $file_size = $_FILES['evidence']['size'][$key];
 
@@ -51,10 +50,9 @@ foreach ($_FILES['evidence']['tmp_name'] as $key => $tmp_name) {
     }
 }
 
-// Convert file paths to JSON
 $evidence_json = mysqli_real_escape_string($conn, json_encode($evidence_paths));
 
-// Insert into DB
+
 $sql = "INSERT INTO incidents (title, description, category, priority, incident_date, evidence_files)
         VALUES ('$title', '$description', '$category', '$priority', '$date', '$evidence_json')";
 

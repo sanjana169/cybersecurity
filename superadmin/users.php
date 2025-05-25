@@ -159,8 +159,6 @@ if (isset($_GET['delete_id'])) {
         </div>
     </div>
 
-
-
     <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -216,9 +214,6 @@ if (isset($_GET['delete_id'])) {
                             </div>
                         </div>
                     </form>
-
-
-
                 </div>
             </div>
         </div>

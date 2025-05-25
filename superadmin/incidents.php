@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $role = $_SESSION['role'] ?? 'super_admin';
 include('../connect.php');
@@ -18,7 +17,6 @@ include('../connect.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="../style.css">
 
-
 </head>
 
 <body>
@@ -31,10 +29,10 @@ include('../connect.php');
                 <div class="card-title d-flex m-0 justify-content-between">
                     <h4>Incidents</h4>
                     <div id="actionContainer" style="display: none;">
-    <button id="deleteSelectedBtn" class="btn btn-danger">
-        Delete <span id="selectedCount">0</span> Selected
-    </button>
-</div>
+                        <button id="deleteSelectedBtn" class="btn btn-danger">
+                            Delete <span id="selectedCount">0</span> Selected
+                        </button>
+                    </div>
 
                     <div>
                         <button onclick="exportTableToCSV('incidents.csv')" class="btn btn-success ">Export as
@@ -126,40 +124,7 @@ include('../connect.php');
 
                                     </select>
                                 </td>
-                                <!--<td>
-                                    <?php
-                                        $evidence_files = json_decode($row['evidence_files'], true);
-                                            if ($evidence_files && is_array($evidence_files)) {
-                                                foreach ($evidence_files as $file) {
-                                                    echo "<a href='$file' target='_blank'>View</a><br>";
-                                                }
-                                            } else {
-                                                echo "No files";
-                                            }
-                                    ?>
-                                </td>-->
-                                <td><?php echo date('d-m-Y', strtotime($row['created_at'])); ?></td>
-                                <!-- <td>
-                                    <?php
-                                   
-                                    $admins = mysqli_query($conn, "SELECT id, username FROM users WHERE role = 'admin'");
-                                    ?>
-                                    <select class="form-select assignAdmin" data-incident-id="<?= $row['id'] ?>"
-                                        style="display:inline-block; width:auto; margin-right:10px;">
-                                        <option value=""> Select Admin</option>
-                                        <?php while ($admin = mysqli_fetch_assoc($admins)) { ?>
-                                        <option value="<?= $admin['id'] ?>"
-                                            <?= ($row['assigned_admin_id'] == $admin['id']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($admin['username']) ?>
-                                        </option>
-                                        <?php } ?>
-                                    </select>
-                                    <button class="btn btn-sm btn-primary assignBtn"
-                                        data-incident-id="<?php echo $row['id']; ?>"
-                                        style="display:inline-block;padding: 2px 10px;margin-top: 5px;">
-                                        Assign
-                                    </button>
-                                </td> -->
+
                             </tr>
                             <?php
                                 }
@@ -256,33 +221,34 @@ include('../connect.php');
         });
 
         $('#deleteSelectedBtn').click(function() {
-    const selected = $('.incidentCheckbox:checked').map(function() {
-        return this.value;
-    }).get();
+            const selected = $('.incidentCheckbox:checked').map(function() {
+                return this.value;
+            }).get();
 
-    if (selected.length === 0) {
-        alert('Please select at least one incident.');
-        return;
-    }
+            if (selected.length === 0) {
+                alert('Please select at least one incident.');
+                return;
+            }
 
-    if (!confirm("Are you sure you want to delete " + selected.length + " incident(s)?")) return;
+            if (!confirm("Are you sure you want to delete " + selected.length + " incident(s)?"))
+                return;
 
-    $.ajax({
-        url: 'delete_incidents.php',
-        type: 'POST',
-        data: {
-            ids: selected
-        },
-        success: function(response) {
-            alert(response.message);
-            location.reload();
-        },
-        error: function(xhr) {
-            alert("Something went wrong.");
-            console.error(xhr.responseText);
-        }
-    });
-});
+            $.ajax({
+                url: 'delete_incidents.php',
+                type: 'POST',
+                data: {
+                    ids: selected
+                },
+                success: function(response) {
+                    alert(response.message);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    alert("Something went wrong.");
+                    console.error(xhr.responseText);
+                }
+            });
+        });
 
     });
     </script>
@@ -324,7 +290,6 @@ include('../connect.php');
         } = window.jspdf;
         const doc = new jsPDF('l', 'pt', 'a4');
 
-        // Get headers
         const headers = [];
         document.querySelectorAll("#incidentsTable thead th").forEach((th, index) => {
             if (index !== 0) {
@@ -332,7 +297,7 @@ include('../connect.php');
             }
         });
 
-        // Get rows
+
         const data = [];
         document.querySelectorAll("#incidentsTable tbody tr").forEach(row => {
             const rowData = [];
@@ -408,7 +373,7 @@ include('../connect.php');
                     .then(data => {
                         if (data.success) {
                             showPopupNotification(data
-                            .message);
+                                .message);
                         } else {
                             alert("Error: " + data.error);
                         }
@@ -433,7 +398,7 @@ include('../connect.php');
             timer: 4000
         });
     }
-    const currentUserRole = "<?php echo $role; ?>"; 
+    const currentUserRole = "<?php echo $role; ?>";
 
     function fetchNotifications() {
         fetch("../get_notification.php?role=" + currentUserRole)
@@ -447,13 +412,9 @@ include('../connect.php');
             })
             .catch(err => console.error("Fetch error:", err));
     }
-    //setInterval(fetchNotifications, 10000); // every 10 seconds
-    fetchNotifications(); // on page load
+
+    fetchNotifications();
     </script>
-
-
-
-
 </body>
 
 </html>

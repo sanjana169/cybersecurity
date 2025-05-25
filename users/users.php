@@ -2,7 +2,6 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-    // Redirect to login or show guest navbar
     header("Location: ../index.php");
     exit;
 }
@@ -36,7 +35,6 @@ include('../connect.php');
             <nav style=" padding:10px; color:#fff;">
                 Welcome <strong><?php echo $user['role']; ?></strong> -
                 <strong><?php echo $user['username']; ?></strong>
-
             </nav>
             <a class="btn btn-outline-light" href="../logout.php">Logout</a>
         </div>
@@ -106,17 +104,24 @@ include('../connect.php');
                             $result = mysqli_query($conn, $sql);
                             if (mysqli_num_rows($result) > 0){
                                 while ($row = mysqli_fetch_assoc($result)){ ?>
-                            <tr data-incident-id="<?php echo $row['id']; ?>" >
-                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo $row['id']; ?></td>
-                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo$row['title']; ?></td>
-                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo $row['description']; ?></td>
-                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo $row['category']; ?></td>
-                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><span
+                            <tr data-incident-id="<?php echo $row['id']; ?>">
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'">
+                                    <?php echo $row['id']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'">
+                                    <?php echo$row['title']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'">
+                                    <?php echo $row['description']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'">
+                                    <?php echo $row['category']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'">
+                                    <span
                                         class="badge bg-<?php echo $row['priority'] === 'High' ? 'danger' : ($row['priority'] === 'Medium' ? 'warning text-dark' : 'success'); ?>">
                                         <?php echo $row['priority']; ?></span>
                                 </td>
-                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo $row['incident_date']; ?></td>
-                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'" class="incident-status"><?php echo $row['status'];?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'">
+                                    <?php echo $row['incident_date']; ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"
+                                    class="incident-status"><?php echo $row['status'];?></td>
                                 <td>
                                     <?php
                                         $evidence_files = json_decode($row['evidence_files'], true);
@@ -129,7 +134,8 @@ include('../connect.php');
                                         }
                                     ?>
                                 </td>
-                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'"><?php echo date('Y-m-d', strtotime($row['created_at'])); ?></td>
+                                <td onclick="window.location.href='view_incident.php?id=<?php echo $row['id']; ?>'">
+                                    <?php echo date('Y-m-d', strtotime($row['created_at'])); ?></td>
                             </tr>
                             <?php
                                 }
@@ -231,7 +237,7 @@ include('../connect.php');
             let valid = true;
 
             for (let file of files) {
-                if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                if (file.size > 5 * 1024 * 1024) {
                     valid = false;
                     break;
                 }
@@ -257,7 +263,6 @@ include('../connect.php');
             ],
         });
 
-        // Add custom filtering function
         $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
             var selectedCategory = $('#filterCategory').val() ? $('#filterCategory').val().toLowerCase()
                 .trim() : '';
@@ -379,7 +384,6 @@ include('../connect.php');
             })
             .catch(console.error);
     }
-
 
     pollNotifications();
     setInterval(pollNotifications, 5000);

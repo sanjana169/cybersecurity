@@ -215,9 +215,6 @@ if (isset($_GET['delete_id'])) {
                             </div>
                         </div>
                     </form>
-
-
-
                 </div>
             </div>
         </div>

@@ -16,8 +16,6 @@ $role = $_SESSION['role'] ?? 'admin';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="../style.css">
-
-
 </head>
 
 <body>
@@ -124,15 +122,14 @@ $role = $_SESSION['role'] ?? 'admin';
                                 <td>
                                     <?php
                                     // Fetch admins with role = 'admin'
-                                    $admins = mysqli_query($conn, "SELECT id, username FROM users WHERE role = 'admin'");
+                                    $admins = mysqli_query($conn, "SELECT id, username FROM `admin` WHERE role = 'admin'");
                                     ?>
-                                    <select class="form-select assignAdmin" data-incident-id="<?= $row['id'] ?>"
+                                    <select class="form-select assignAdmin" data-incident-id="<?php echo $row['id']; ?>"
                                         style="display:inline-block; width:auto; margin-right:10px;">
                                         <option value=""> Select Admin</option>
                                         <?php while ($admin = mysqli_fetch_assoc($admins)) { ?>
-                                        <option value="<?= $admin['id'] ?>"
-                                            <?= ($row['assigned_admin_id'] == $admin['id']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($admin['username']) ?>
+                                        <option value="<?php echo $admin['id']; ?>" <?php ($row['assigned_admin_id'] == $admin['id']) ? 'selected' : '' ?>>
+                                             <?php echo $admin['username']; ?>
                                         </option>
                                         <?php } ?>
                                     </select>
@@ -400,8 +397,6 @@ $role = $_SESSION['role'] ?? 'admin';
     pollNotifications();
     setInterval(pollNotifications, 5000);
     </script>
-
-
 
 </body>
 
