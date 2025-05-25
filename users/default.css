@@ -1,0 +1,17 @@
+.main-panel {
+        max-width: 1400px;
+        margin: auto;
+        padding: 80px 20px 20px;
+    }
+
+    #incidentsTable th,
+    #incidentsTable td {
+        padding: 12px 15px;
+        font-size: 14px;
+        vertical-align: middle;
+    }
+    .logo{
+        border-bottom:0;
+        z-index: 1000;
+    }
+    
