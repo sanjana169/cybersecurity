@@ -1,5 +1,5 @@
 <?php
-include 'connect.php'; // or correct path
+include 'connect.php'; 
 session_start();
 
 header('Content-Type: application/json');
@@ -20,13 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $stmt->bind_param("ss", $role, $message);
                 $stmt->execute();
             }
-$lastId = $conn->insert_id;
-            echo json_encode([
-    "success"  => true,
-    "lastId"   => $lastId,
-    "new_status" => $status,
-    "message" => $message
-]);
+            $lastId = $conn->insert_id;
+                        echo json_encode([
+                "success"  => true,
+                "lastId"   => $lastId,
+                "new_status" => $status,
+                "message" => $message
+            ]);
         } else {
             echo json_encode([
                 "success" => false,

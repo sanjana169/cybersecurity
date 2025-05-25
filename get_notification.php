@@ -4,15 +4,12 @@ session_start();
 header('Content-Type: application/json');
 
 $role  = $_GET['role']  ?? '';
-$after = intval($_GET['after'] ?? 0);          // newest id the browser knows about
+$after = intval($_GET['after'] ?? 0);          
 
 $out = [];
 
 if ($role) {
-    $sql  = "SELECT id, message
-             FROM notifications
-             WHERE user_role = ? AND id > ?
-             ORDER BY id ASC";                // ascending = oldest-first
+    $sql  = "SELECT id, message FROM notifications  WHERE user_role = ? AND id > ? ORDER BY id ASC";                
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $role, $after);
     $stmt->execute();
@@ -21,7 +18,7 @@ if ($role) {
         $out[] = $row;
     }
 
-    /* optional: immediately mark as read so they won’t be sent again after reload */
+    
     if (!empty($out)) {
         $maxId = end($out)['id'];
         $mark  = $conn->prepare(
