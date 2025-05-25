@@ -1,0 +1,213 @@
+
+:root {
+  --primary-color: #4a90e2; /* nice blue */
+  --secondary-color: #f5f7fa; /* light background */
+  --danger-color: #e94e77; /* vibrant red */
+  --warning-color: #f5a623; /* orange */
+  --success-color: #7ed6df; /* light teal */
+}
+
+body {
+  background-color: var(--secondary-color);
+  color: #333;
+}
+.navbar {
+  background-color: var(--primary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+}
+
+.badge-danger {
+  background-color: var(--danger-color);
+}
+
+.badge-warning {
+  background-color: var(--warning-color);
+  color: #212529;
+}
+
+.badge-success {
+  background-color: var(--success-color);
+  color: #212529;
+}
+.modal-content {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}
+.badge {
+  border-radius: 20px;
+  padding: 0.4em 1em;
+  font-weight: 600;
+}
+.btn-primary, .btn-secondary {
+  
+  padding: 3px 20px;
+  font-weight: 600;
+  font-size: 16px;
+}
+body {
+  background: #f9fafb;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+}
+
+.navbar {
+  box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+}
+
+.card-header {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.table thead th {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+.table tbody tr:hover {
+  background-color: #e3f2fd;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #357ab7;
+}
+
+.invalid-feedback {
+  font-size: 0.9em;
+}
+
+.modal-content {
+  border-radius: 12px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+}
+
+input[type="file"] {
+  border-radius: 8px;
+}
+.btn-primary, .btn-secondary {
+  transition: background-color 0.3s ease;
+}
+
+.table tbody tr {
+  transition: background-color 0.2s ease;
+}
+.navbar{
+    position: fixed;
+    margin-left: 250px;
+    z-index: 1000;
+    width: calc(100% - 16.5%);
+}
+.main-menu{
+    position: fixed;
+    top:60px;
+}
+.mainpanel{
+    margin-left: 300px;
+    margin-right: 25px;
+    padding-top: 80px;
+}
+.logo{
+    position: fixed;
+    width: 16.5%;
+    height: 60px;
+    text-align: center;
+    display: block;
+    background: #212529;
+    color: #fff;
+    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body.sidebar-open .main-menu {
+    display: none; 
+}
+
+body.sidebar-open .logo {
+    display: none; 
+}
+body.sidebar-open .navbar {
+   margin-left: 0; 
+   width: 100%;
+}
+body.sidebar-open .mainpanel {
+   margin-left: 25px; 
+}
+.nav-link.active ,
+.nav-link:hover{
+    background-color: white;
+    color: black !important; 
+    font-weight: bold;
+    border-radius: 4px;
+}
+/* Pagination container */
+    .dataTables_wrapper .dataTables_paginate {
+        margin-top: 15px;
+        text-align: right;
+    }
+
+    /* Pagination buttons */
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        background-color: #4a90e2;
+        /* Primary blue */
+        color: white !important;
+        border-radius: 5px;
+        padding: 6px 14px;
+        margin: 0 4px;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-weight: 600;
+        user-select: none;
+    }
+
+    /* Hover effect */
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background-color: #357ab7;
+        color: #fff !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Current active page button */
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background-color: #27496d !important;
+        color: #fff !important;
+        font-weight: 700;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        cursor: default;
+    }
+
+    /* Disabled buttons */
+    .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+        background-color: #cfd8dc !important;
+        color: #90a4ae !important;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+
+    /* footer */
+    .footer{
+      margin-left: 300px;
+      margin-top: 30px;
+      text-align: right;
+      margin-right: 25px;
+    }
